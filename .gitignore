@@ -1,0 +1,19 @@
+.DS_Store
+*.swp
+target
+**/.sdkmanrc
+
+# Eclipse files
+.project
+.settings/
+
+# IntelliJ files
+*.iml
+.idea/
+
+# VS
+.vs/
+.vscode/
+
+#SDKMAN
+.sdkmanrc
