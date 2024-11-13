@@ -7,9 +7,9 @@ public class PaymentMetricsAverage extends PaymentMetrics {
 
     @Override
     public synchronized long post(long timestamp, long amount) {
-        txs = cleanUpOldTxs(timestamp);
-        txs.add(new Transaction(timestamp, amount));
-        return (long)txs.stream()
+        removeExpiredTxs(timestamp);
+        transactions.add(new Transaction(timestamp, amount));
+        return (long) transactions.stream()
                 .map(Transaction::amount)
                 .mapToLong(Long::longValue)
                 .average()

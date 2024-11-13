@@ -7,8 +7,8 @@ public class PaymentMetricsCount extends PaymentMetrics {
 
     @Override
     public synchronized long post(long timestamp, long amount) {
-        txs = cleanUpOldTxs(timestamp);
-        txs.add(new Transaction(timestamp, amount));
-        return txs.size();
+        removeExpiredTxs(timestamp);
+        transactions.add(new Transaction(timestamp, amount));
+        return transactions.size();
     }
 }

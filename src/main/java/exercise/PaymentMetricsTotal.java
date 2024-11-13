@@ -7,9 +7,9 @@ public class PaymentMetricsTotal extends PaymentMetrics {
 
     @Override
     public synchronized long post(long timestamp, long amount) {
-        txs = cleanUpOldTxs(timestamp);
-        txs.add(new Transaction(timestamp, amount));
-        return txs.stream()
+        removeExpiredTxs(timestamp);
+        transactions.add(new Transaction(timestamp, amount));
+        return transactions.stream()
                 .map(Transaction::amount)
                 .mapToLong(Long::longValue)
                 .sum();
